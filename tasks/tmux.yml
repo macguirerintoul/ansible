@@ -1,0 +1,9 @@
+---
+- ansible.builtin.apt:
+    name: tmux
+    state: latest
+  become: true
+  when: ansible_distribution == "Ubuntu"
+- community.general.homebrew:
+    name: tmux
+  when: ansible_distribution == 'MacOSX'

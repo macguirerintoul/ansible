@@ -1,0 +1,2 @@
+- install script
+- ssh copy id?

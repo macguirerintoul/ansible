@@ -1,0 +1,22 @@
+---
+- name: Ensure .dotfiles repo is present
+  ansible.builtin.git:
+    repo: https://github.com/macguirerintoul/.dotfiles.git
+    dest: ~/.dotfiles
+    force: true
+- ansible.builtin.file:
+    path: "~/.dotfiles/home/.DS_Store"
+    state: absent
+- name: Find all files in ~/.dotfiles/home
+  find:
+    paths: ~/.dotfiles/home
+    hidden: true
+    recurse: true
+  register: find
+- name: Create links to ~/.dotfiles/home from ~
+  ansible.builtin.file:
+    src: "{{ item.path }}"
+    path: "~/{{ item.path | regex_search('(?<=.dotfiles\/home\/).*') }}"
+    state: link
+    force: true # force link if file already exists
+  with_items: "{{ find.files }}"

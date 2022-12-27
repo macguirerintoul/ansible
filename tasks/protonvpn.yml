@@ -1,0 +1,3 @@
+- name: ProtonVPN
+  community.general.homebrew_cask:
+    name: protonvpn

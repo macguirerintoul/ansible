@@ -1,0 +1,12 @@
+- hosts: proxmox
+  tasks:
+    - ansible.builtin.include_tasks: 
+        file: tasks/upgrade.yml
+    - ansible.builtin.include_tasks:
+        file: tasks/git.yml
+    - ansible.builtin.include_tasks:
+        file: tasks/dotfiles.yml
+    - ansible.builtin.include_tasks: 
+        file: tasks/tmux.yml
+    - ansible.builtin.include_tasks: 
+        file: tasks/zsh.yml

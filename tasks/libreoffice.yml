@@ -1,0 +1,2 @@
+- community.general.homebrew_cask:
+    name: libreoffice

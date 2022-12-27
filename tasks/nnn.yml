@@ -1,0 +1,15 @@
+---
+- ansible.builtin.apt:
+    name:
+      - nnn
+      - most
+    state: latest
+  become: true
+  when: ansible_distribution == "Ubuntu"
+- ansible.builtin.include_tasks:
+    file: macOS.yml
+  when: ansible_distribution == 'MacOSX'
+- ansible.builtin.expect: 
+    command: sh -c "$(curl -Ls https://raw.githubusercontent.com/jarun/nnn/master/plugins/getplugs)"
+    responses:
+      (?i)different: "o" # Overwrite if plugin is already present

@@ -1,0 +1,13 @@
+---
+- ansible.builtin.apt:
+    name:
+      - vim
+    state: latest
+  become: true
+  when: ansible_distribution == "Ubuntu"
+- community.general.homebrew:
+    name: vim
+  when: ansible_distribution == 'MacOSX'
+- ansible.builtin.shell: curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+- shell: vim +PlugInstall +qall
+- shell: vim '+PlugClean!' +qall

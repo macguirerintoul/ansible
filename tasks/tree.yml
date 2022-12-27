@@ -1,0 +1,10 @@
+---
+- ansible.builtin.apt:
+    name:
+      - tree
+    state: latest
+  become: true
+  when: ansible_distribution == "Ubuntu"
+- community.general.homebrew:
+    name: tree
+  when: ansible_distribution == 'MacOSX'

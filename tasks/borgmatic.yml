@@ -1,0 +1,4 @@
+- ansible.builtin.pip:
+    name: borgmatic
+    extra_args: --user
+  become: true
