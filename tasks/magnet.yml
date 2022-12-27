@@ -1,4 +1,6 @@
 - name: Magnet
+  tags:
+  - mas
   community.general.mas:
     id: 441258766
     state: latest
