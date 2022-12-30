@@ -27,5 +27,19 @@ jobs:
           sudo rm -rf /Applications/Google\ Chrome.app
       - name: Make an empty .env.yml
         run: touch .env.yml
+      - name: Install requirements
+        run: ansible-galaxy install -r requirements.yml
       - name: Test the playbook
-        run: ansible-playbook macOS.yml --skip-tags mas
+        run: ansible-playbook macOS.yml --skip-tags no-ci -vvv -i inventory-ci.ini
+  nitecloud:
+    name: nitecloud
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3
+      - name: Install Ansible
+        run: ./install-ansible.sh
+      - name: Install requirements
+        run: ansible-galaxy install -r requirements.yml
+      - name: Test the playbook
+        run: ansible-playbook nitecloud.yml --skip-tags no-ci -vvv -i inventory-ci.ini

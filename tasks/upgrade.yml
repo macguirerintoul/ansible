@@ -1,10 +1,12 @@
----
-- ansible.builtin.apt:
-    update_cache: true
-    upgrade: yes
-  become: true
-  when: ansible_distribution == "Ubuntu"
-- community.general.homebrew:
-    update_homebrew: true
-    upgrade_all: true
-  when: ansible_distribution == 'MacOSX'
+- name: Upgrade
+  tags: no-ci
+  block:
+    - ansible.builtin.apt:
+        update_cache: true
+        upgrade: yes
+      become: true
+      when: ansible_distribution == "Ubuntu"
+    - community.general.homebrew:
+        update_homebrew: true
+        upgrade_all: true
+      when: ansible_distribution == 'MacOSX'

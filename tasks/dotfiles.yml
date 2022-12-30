@@ -3,7 +3,6 @@
   ansible.builtin.git:
     repo: https://github.com/macguirerintoul/.dotfiles.git
     dest: ~/.dotfiles
-    force: true
 - ansible.builtin.file:
     path: "~/.dotfiles/home/.DS_Store"
     state: absent
@@ -19,4 +18,8 @@
     path: "~/{{ item.path | regex_search('(?<=.dotfiles\/home\/).*') }}"
     state: link
     force: true # force link if file already exists
-  with_items: "{{ find.files }}"
+  with_items: "{{ find.files | select('match', '^((?!.zsh_plugins).)*$')}}"
+- ansible.builtin.file:
+    src: ~/.dotfiles/home/.zsh_plugins
+    path: ~/.zsh_plugins
+    state: link

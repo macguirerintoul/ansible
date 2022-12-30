@@ -1,6 +1,6 @@
 - name: Magnet
   tags:
-  - mas
+  - no-ci
   community.general.mas:
     id: 441258766
     state: latest

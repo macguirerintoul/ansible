@@ -5,8 +5,6 @@
   tasks:
     # Setup
     - ansible.builtin.include_tasks: 
-        file: tasks/upgrade.yml
-    - ansible.builtin.include_tasks: 
         file: tasks/dotfiles.yml
       tags:
         - dotfiles

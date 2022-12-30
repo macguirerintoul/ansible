@@ -1,6 +1,6 @@
 - name: Wireguard
   tags:
-  - mas
+  - no-ci
   community.general.mas:
     id: 1451685025
     state: latest

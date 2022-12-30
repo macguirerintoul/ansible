@@ -15,7 +15,3 @@
   ansible.builtin.user:
     name: "{{ whoami.stdout }}"
     shell: "{{ zsh.stdout }}"
-- ansible.builtin.git:
-    repo: https://github.com/zplug/zplug.git
-    dest: ~/.zplug
-- ansible.builtin.shell: "{{ zsh.stdout }} -c 'source ~/.zshrc && zplug install'"
