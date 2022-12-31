@@ -1,7 +1,9 @@
-- community.general.homebrew:
+- name: mas installed
+  community.general.homebrew:
     name: mas
 - shell: mas account
   failed_when: false
   register: mas_status
 - shell: open -a "App Store"
   when: mas_status.rc != 0
+  changed_when: false

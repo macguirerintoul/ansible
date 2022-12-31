@@ -1,4 +1,3 @@
----
 - name: Ensure .dotfiles repo is present
   ansible.builtin.git:
     repo: https://github.com/macguirerintoul/.dotfiles.git
@@ -6,6 +5,9 @@
 - ansible.builtin.file:
     path: "~/.dotfiles/home/.DS_Store"
     state: absent
+- ansible.builtin.file:
+    path: ~/.ssh
+    state: directory
 - name: Find all files in ~/.dotfiles/home
   find:
     paths: ~/.dotfiles/home

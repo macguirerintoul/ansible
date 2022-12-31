@@ -1,12 +1,19 @@
-- hosts: pi
+---
+- name: Raspberry Pi
+  hosts: pi
   tasks:
-    - ansible.builtin.include_tasks: 
+    - name: "Package: zsh"
+      ansible.builtin.include_tasks:
         file: tasks/zsh.yml
-    - ansible.builtin.include_tasks: 
-      file: tasks/dotfiles.yml
-    - ansible.builtin.include_tasks: 
-      file: tasks/git.yml
-    - ansible.builtin.include_tasks: 
+    - name: "Set up dotfiles"
+      ansible.builtin.include_tasks:
+        file: tasks/dotfiles.yml
+    - name: "Package: git"
+      ansible.builtin.include_tasks:
+        file: tasks/git.yml
+    - name: "Package: tmux"
+      ansible.builtin.include_tasks:
         file: tasks/tmux.yml
-    - ansible.builtin.include_tasks: 
+    - name: "Package: vim"
+      ansible.builtin.include_tasks:
         file: tasks/vim.yml

@@ -1,15 +1,19 @@
 ---
-- ansible.builtin.apt:
+- name: zsh installed
+  ansible.builtin.apt:
     name: zsh
   become: true
-  when: ansible_distribution == "Ubuntu"
-- community.general.homebrew:
+  when: ansible_facts['os_family'] == "Debian"
+- name: zsh installed
+  community.general.homebrew:
     name: zsh
   when: ansible_distribution == 'MacOSX'
 - ansible.builtin.shell: whoami
   register: whoami
+  changed_when: false
 - ansible.builtin.shell: which zsh
   register: zsh
+  changed_when: false
 - name: Make zsh default shell
   become: true
   ansible.builtin.user:

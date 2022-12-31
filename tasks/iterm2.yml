@@ -1,4 +1,6 @@
 - community.general.homebrew_cask:
     name: iterm2
 - ansible.builtin.shell: defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "~/.dotfiles/other/iterm2"
+  changed_when: false
 - ansible.builtin.shell: defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
+  changed_when: false

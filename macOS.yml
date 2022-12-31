@@ -10,6 +10,12 @@
         - dotfiles
     # Packages
     - ansible.builtin.include_tasks: 
+        file: tasks/zsh.yml
+      tags: setup
+    - ansible.builtin.include_tasks: 
+        file: tasks/git.yml
+      tags: git
+    - ansible.builtin.include_tasks: 
         file: tasks/borgbackup.yml
       tags: setup
     - ansible.builtin.include_role: 
@@ -23,9 +29,6 @@
       tags: setup
     - ansible.builtin.include_tasks: 
         file: tasks/vim.yml
-      tags: setup
-    - ansible.builtin.include_tasks: 
-        file: tasks/zsh.yml
       tags: setup
     # Apps
     - ansible.builtin.include_tasks: 

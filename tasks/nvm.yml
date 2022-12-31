@@ -1,8 +1,13 @@
-- name: Install nvm
-  shell: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
-  register: nvm_install_result
-- name: Install Node.js LTS
-  shell: ". ./nvm.sh && nvm install --lts"
-  args:
-    chdir: ~/.nvm
-  register: node_install_result
+- name: nvm & node
+  tags: nvm
+  block:
+  - name: Install nvm
+    shell: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+    register: nvm_install_result
+    changed_when: "'already installed' not in nvm_install_result.stdout"
+  - name: Install Node.js LTS
+    shell: ". ./nvm.sh && nvm install --lts"
+    args:
+      chdir: ~/.nvm
+    register: node_install_result
+    changed_when: "'already installed' not in node_install_result.stderr"

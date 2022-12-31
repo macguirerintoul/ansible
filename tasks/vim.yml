@@ -4,7 +4,7 @@
       - vim
     state: latest
   become: true
-  when: ansible_distribution == "Ubuntu"
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian" 
 - community.general.homebrew:
     name: vim
   when: ansible_distribution == 'MacOSX'
