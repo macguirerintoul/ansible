@@ -1,13 +1,20 @@
-- hosts: nitecloud
+- hosts: nitecloud 
+  roles:
+    - name: geerlingguy.docker
+      become: true
   tasks:
-    - ansible.builtin.include_tasks: 
-        file: tasks/upgrade.yml
     - ansible.builtin.include_tasks: 
         file: tasks/dotfiles.yml
     - ansible.builtin.include_tasks: 
         file: tasks/borgbackup.yml
     - ansible.builtin.include_tasks: 
         file: tasks/borgmatic.yml
+    - name: docker
+      tags: docker
+      ansible.builtin.include_tasks: 
+        file: tasks/docker.yml
+        apply:
+          tags: docker 
     - ansible.builtin.include_tasks: 
         file: tasks/git.yml
     - ansible.builtin.include_tasks: 
@@ -28,3 +35,5 @@
         dest: "/etc/ssh/sshd_config"
         regexp: "^PermitRootLogin\ "
         line: "PermitRootLogin no"
+    - ansible.builtin.include_tasks: 
+        file: tasks/upgrade.yml

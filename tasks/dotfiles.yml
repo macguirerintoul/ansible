@@ -20,8 +20,14 @@
     path: "~/{{ item.path | regex_search('(?<=.dotfiles\/home\/).*') }}"
     state: link
     force: true # force link if file already exists
-  with_items: "{{ find.files | select('match', '^((?!.zsh_plugins).)*$')}}"
+  with_items: "{{ find.files | select('match', '^((?!.zsh_plugins|.vim).)*$')}}"
 - ansible.builtin.file:
     src: ~/.dotfiles/home/.zsh_plugins
     path: ~/.zsh_plugins
     state: link
+    force: true # force link if file already exists
+- ansible.builtin.file:
+    src: ~/.dotfiles/home/.vim
+    path: ~/.vim
+    state: link
+    force: true # force link if file already exists

@@ -1,23 +1,26 @@
 ---
 - hosts: localhost
-  vars_files:
-    - .env.yml
   tasks:
     # Setup
     - ansible.builtin.include_tasks: 
         file: tasks/dotfiles.yml
-      tags:
-        - dotfiles
+      tags: dotfiles
     # Packages
     - ansible.builtin.include_tasks: 
         file: tasks/zsh.yml
-      tags: setup
+      tags: zsh
     - ansible.builtin.include_tasks: 
         file: tasks/git.yml
       tags: git
     - ansible.builtin.include_tasks: 
+        file: tasks/ansible.yml
+    - ansible.builtin.include_tasks: 
         file: tasks/borgbackup.yml
-      tags: setup
+    - ansible.builtin.include_tasks: 
+        file: tasks/docker.yml
+        apply: 
+          tags: docker
+      tags: docker
     - ansible.builtin.include_role: 
         name: elliotweiser.osx-command-line-tools
       tags: setup
@@ -61,6 +64,15 @@
         file: tasks/spotify.yml
     - ansible.builtin.include_tasks: 
         file: tasks/visual-studio-code.yml
+    - shell: |
+        defaults write com.apple.dock autohide -bool true
+	    defaults write com.apple.dock magnification -bool false
+	    defaults write com.apple.dock autohide-delay -float 0
+	    defaults write com.apple.dock autohide-time-modifier -float 1
+	    defaults write NSGlobalDomain _HIHideMenuBar -bool true
     # Wrap up
     - ansible.builtin.include_tasks: 
         file: tasks/upgrade.yml
+
+
+        	

@@ -19,5 +19,11 @@
     - name: "Package: vim"
       ansible.builtin.include_tasks:
         file: tasks/vim.yml
-    - ansible.builtin.include_tasks: 
-      file: tasks/upgrade.yml
+    - name: docker
+      tags: docker
+      ansible.builtin.include_tasks: 
+        file: tasks/docker.yml
+        apply:
+          tags: docker 
+    - ansible.builtin.include_tasks:
+        file: tasks/upgrade.yml

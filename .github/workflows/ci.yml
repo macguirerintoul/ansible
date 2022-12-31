@@ -10,21 +10,12 @@ name: CI
 jobs:
   macOS:
     name: macOS
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os:
-          - macos-10.15
-          - macos-11
+    runs-on: macos-12
     steps:
       - name: Check out the repo
         uses: actions/checkout@v3
       - name: Install Ansible
         run: brew install ansible
-      - name: Uninstall built-in browsers
-        run: |
-          sudo rm -rf /Applications/Firefox.app
-          sudo rm -rf /Applications/Google\ Chrome.app
       - name: Make an empty .env.yml
         run: touch .env.yml
       - name: Install requirements
