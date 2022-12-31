@@ -1,10 +1,10 @@
 ---
-- name: zsh installed
+- name: "Package: zsh"
   ansible.builtin.apt:
     name: zsh
   become: true
   when: ansible_facts['os_family'] == "Debian"
-- name: zsh installed
+- name: "Package: zsh"
   community.general.homebrew:
     name: zsh
   when: ansible_distribution == 'MacOSX'

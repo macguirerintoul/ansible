@@ -1,0 +1,4 @@
+- hosts: all
+  tasks:
+    - ansible.builtin.include_tasks:
+    file: tasks/upgrade.yml

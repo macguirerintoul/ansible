@@ -1,4 +1,6 @@
+---
 - hosts: proxmox
+  name: Proxmox
   tasks:
     - ansible.builtin.include_tasks: 
         file: tasks/upgrade.yml

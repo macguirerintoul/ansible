@@ -2,6 +2,8 @@
 - name: Raspberry Pi
   hosts: pi
   tasks:
+    - ansible.builtin.include_tasks: 
+        file: tasks/sshd.yml
     - name: "Package: zsh"
       ansible.builtin.include_tasks:
         file: tasks/zsh.yml
