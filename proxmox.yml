@@ -2,8 +2,6 @@
 - hosts: proxmox
   name: Proxmox
   tasks:
-    - ansible.builtin.include_tasks: 
-        file: tasks/upgrade.yml
     - ansible.builtin.include_tasks:
         file: tasks/git.yml
     - ansible.builtin.include_tasks:
@@ -12,3 +10,5 @@
         file: tasks/tmux.yml
     - ansible.builtin.include_tasks: 
         file: tasks/zsh.yml
+    - ansible.builtin.include_tasks: 
+        file: tasks/upgrade.yml

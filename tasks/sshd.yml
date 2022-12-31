@@ -1,10 +1,14 @@
-- name: Change SSH port
-  lineinfile:
-    dest: "/etc/ssh/sshd_config"
-    regexp: "^Port"
-    line: "Port 9753"
-- name: Reload ssh
+---
+- name: sshd
   become: true
-  service:
-    name: ssh
-    state: restarted
+  block:
+    - name: Change SSH port
+      lineinfile:
+        dest: "/etc/ssh/sshd_config"
+        regexp: "^Port"
+        line: "Port 9753"
+    - name: Reload ssh
+      become: true
+      service:
+        name: ssh
+        state: restarted

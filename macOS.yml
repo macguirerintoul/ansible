@@ -61,3 +61,6 @@
         file: tasks/spotify.yml
     - ansible.builtin.include_tasks: 
         file: tasks/visual-studio-code.yml
+    # Wrap up
+    - ansible.builtin.include_tasks: 
+        file: tasks/upgrade.yml

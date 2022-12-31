@@ -1,8 +1,6 @@
 - hosts: vpn
   tasks:
     - ansible.builtin.include_tasks: 
-        file: tasks/upgrade.yml
-    - ansible.builtin.include_tasks: 
         file: tasks/dotfiles.yml
     - ansible.builtin.include_tasks: 
         file: tasks/git.yml
@@ -14,3 +12,5 @@
         file: tasks/zsh.yml
     - ansible.builtin.include_tasks: 
         file: tasks/sshd.yml
+    - ansible.builtin.include_tasks: 
+        file: tasks/upgrade.yml
