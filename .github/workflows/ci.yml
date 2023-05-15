@@ -19,7 +19,7 @@ jobs:
       - name: Install requirements
         run: ansible-galaxy install -r requirements.yml
       - name: Test the playbook
-        run: ansible-playbook macOS.yml --skip-tags no-ci -vvv -i inventory-ci.ini
+        run: ansible-playbook pb-personal.yml --skip-tags no-ci -vvv -i inventory-ci.ini
   nitecloud:
     name: nitecloud
     runs-on: ubuntu-22.04
@@ -31,4 +31,4 @@ jobs:
       - name: Install requirements
         run: ansible-galaxy install -r requirements.yml
       - name: Test the playbook
-        run: ansible-playbook nitecloud.yml --skip-tags no-ci -vvv -i inventory-ci.ini
+        run: ansible-playbook pb-nitecloud.yml --skip-tags no-ci -vvv -i inventory-ci.ini
