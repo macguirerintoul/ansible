@@ -1,8 +1,8 @@
 ---
 name: CI
-'on':
+"on":
   pull_request:
-    branches:    
+    branches:
       - main
   push:
     branches:
@@ -16,8 +16,6 @@ jobs:
         uses: actions/checkout@v3
       - name: Install Ansible
         run: brew install ansible
-      - name: Make an empty .env.yml
-        run: touch .env.yml
       - name: Install requirements
         run: ansible-galaxy install -r requirements.yml
       - name: Test the playbook

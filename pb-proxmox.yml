@@ -11,4 +11,4 @@
     - ansible.builtin.include_tasks: 
         file: tasks/zsh.yml
     - ansible.builtin.include_tasks: 
-        file: tasks/upgrade.yml
+        file: tasks/vim.yml
