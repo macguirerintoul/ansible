@@ -1,7 +1,6 @@
-- name: Install docker via brew
-  when: ansible_distribution == 'MacOSX'
-  community.general.homebrew:
+- community.general.homebrew:
     name: docker
+  when: ansible_distribution == 'MacOSX'
 - name: docker
   when: ansible_facts['os_family'] == "Debian"
   block:
@@ -25,7 +24,7 @@
         state: present
     - file:
         path: /etc/apt/keyrings
-        state: directory  
+        state: directory
       become: true
     - stat:
         path: /etc/apt/keyrings/docker.gpg
@@ -35,7 +34,7 @@
       become: true
       block:
         - name: Add Docker’s official GPG key
-          when: ansible_distribution == "Ubuntu" 
+          when: ansible_distribution == "Ubuntu"
           shell: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
         - name: Add Docker’s official GPG key
           shell: curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
@@ -48,16 +47,16 @@
       when: not repository.stat.exists
       block:
         - shell: 'echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null'
-          when: ansible_distribution == "Ubuntu" 
+          when: ansible_distribution == "Ubuntu"
         - shell: 'echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null'
           when: ansible_distribution == "Debian"
     - name: Ensure dependencies are installed.
       become: true
       apt:
         name:
-          - docker-ce 
-          - docker-ce-cli 
-          - containerd.io 
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
           - docker-compose-plugin
         state: present
         update_cache: true
