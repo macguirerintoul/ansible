@@ -1,4 +1,3 @@
----
 - name: Install tmux
   ansible.builtin.apt:
     name: tmux

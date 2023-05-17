@@ -1,7 +1,7 @@
-- community.general.homebrew_tap:
-    name: 
-      - homebrew/cask-fonts
-- name: Install brew casks
+- name: Add the Homebrew fonts tap
+  community.general.homebrew_tap:
+    name: homebrew/cask-fonts
+- name: Install fonts via Homebrew
   community.general.homebrew_cask:
-    name: 
-      - font-cozette 
+    name:
+      - font-cozette

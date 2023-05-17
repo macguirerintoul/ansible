@@ -1,5 +1,5 @@
-- hosts: vs
-  name: Provision my work server
+- name: Provision my work server
+  hosts: vserver
   roles:
     - git
     - dotfiles

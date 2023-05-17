@@ -1,4 +1,4 @@
-- name: Ensure .dotfiles repo is present # noqa: latest
+- name: Ensure .dotfiles repo is present # noqa: latest # Ansible Lint wants a version specified
   ansible.builtin.git:
     repo: https://github.com/macguirerintoul/.dotfiles.git
     dest: ~/.dotfiles

@@ -1,9 +1,9 @@
----
 - name: Install Vim
   ansible.builtin.apt:
     name: vim
   become: true
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
+
 - name: Install Vim
   community.general.homebrew:
     name: vim

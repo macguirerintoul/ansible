@@ -1,8 +1,6 @@
----
-- ansible.builtin.apt:
-    name:
-      - tree
-    state: latest
+- name: Install tree
+  ansible.builtin.apt:
+    name: tree
   become: true
   when: ansible_distribution == "Ubuntu"
 - community.general.homebrew:

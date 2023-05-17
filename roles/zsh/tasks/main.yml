@@ -1,22 +1,25 @@
----
-- name: "Package: zsh"
+- name: Install Zsh
   ansible.builtin.apt:
     name: zsh
   become: true
   when: ansible_facts['os_family'] == "Debian"
+
 - name: "Package: zsh"
   community.general.homebrew:
     name: zsh
   when: ansible_distribution == 'MacOSX'
+
 - name: Get the current user
   ansible.builtin.command: whoami
   register: zsh_whoami
   changed_when: false
+
 - name: Get the path to zsh
   ansible.builtin.command: which zsh
   register: zsh_zsh
   changed_when: false
-- name: Make zsh default shell
+
+- name: Make Zsh the default shell
   become: true
   ansible.builtin.user:
     name: "{{ zsh_whoami.stdout }}"

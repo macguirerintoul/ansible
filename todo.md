@@ -1,0 +1,2 @@
+- check if apps already exist
+- comments
