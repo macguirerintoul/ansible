@@ -1,12 +1,14 @@
 - name: Upgrade
   tags: no-ci
   block:
-    - ansible.builtin.apt:
+    - name: Upgrade apt packages
+      ansible.builtin.apt:
         update_cache: true
-        upgrade: yes
+        upgrade: true
       become: true
       when: ansible_facts['os_family'] == "Debian"
-    - community.general.homebrew:
+    - name: Upgrade brew packages
+      community.general.homebrew:
         update_homebrew: true
         upgrade_all: true
       when: ansible_distribution == 'MacOSX'

@@ -1,5 +1,5 @@
----
-- hosts: localhost # Run on the macOS device to be setup
+- name: Provision personal macOS device
+  hosts: localhost # Run on the macOS device to be setup
   module_defaults:
     community.general.homebrew_cask:
       accept_external_apps: true
@@ -12,7 +12,7 @@
     - ansible.builtin.include_tasks:
         file: tasks/git.yml
     - ansible.builtin.include_tasks:
-        file: tasks/ansible.yml
+        file: tasks/asdf.yml
     - ansible.builtin.include_tasks:
         file: tasks/borgbackup.yml
     - ansible.builtin.include_tasks:

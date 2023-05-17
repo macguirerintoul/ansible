@@ -8,10 +8,12 @@
   community.general.homebrew:
     name: zsh
   when: ansible_distribution == 'MacOSX'
-- ansible.builtin.shell: whoami
+- name: Get the current user
+  ansible.builtin.command: whoami
   register: whoami
   changed_when: false
-- ansible.builtin.shell: which zsh
+- name: Get the path to zsh
+  ansible.builtin.command: which zsh
   register: zsh
   changed_when: false
 - name: Make zsh default shell

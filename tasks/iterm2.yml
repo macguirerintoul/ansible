@@ -1,6 +1,15 @@
-- community.general.homebrew_cask:
+- name: Install iTerm2
+  community.general.homebrew_cask:
     name: iterm2
-- ansible.builtin.shell: defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "~/.dotfiles/other/iterm2"
-  changed_when: false
-- ansible.builtin.shell: defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
-  changed_when: false
+- name: Specify iTerm custom preferences location
+  osx_defaults:
+    domain: com.googlecode.iterm2
+    key: PrefsCustomFolder
+    type: string
+    value: ~/.dotfiles/other/iterm2
+- name: Load preferences from custom folder
+  osx_defaults:
+    domain: com.googlecode.iterm2
+    key: LoadPrefsFromCustomFolder
+    type: boolean
+    value: true

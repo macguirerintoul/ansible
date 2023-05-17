@@ -1,14 +1,14 @@
-- name: Ensure .dotfiles repo is present
+- name: Ensure .dotfiles repo is present # noqa: latest
   ansible.builtin.git:
-    # Use HTTPS to avoid having to set up an SSH key at GitHub
     repo: https://github.com/macguirerintoul/.dotfiles.git
     dest: ~/.dotfiles
 - name: Ensure the ~/.ssh directory exists, so ~/.ssh/config can be copied
   ansible.builtin.file:
     path: ~/.ssh
     state: directory
+    mode: "0700"
 - name: Find all files in ~/.dotfiles/home
-  find:
+  ansible.builtin.find:
     paths: ~/.dotfiles/home
     hidden: true
     recurse: true
@@ -19,7 +19,7 @@
     path: "~/{{ item.path | regex_search('(?<=.dotfiles\/home\/).*') }}"
     state: link
     force: true # force link if file already exists
-  with_items: "{{ find.files | select('match', '^((?!.zsh_plugins|.vim).)*$')}}"
+  with_items: "{{ find.files | select('match', '^((?!.zsh_plugins|.vim).)*$') }}"
 - name: Create link to Zsh plugins directory
   ansible.builtin.file:
     src: ~/.dotfiles/home/.zsh_plugins

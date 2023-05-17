@@ -1,36 +1,37 @@
-- hosts: nitecloud
+- name: Nitecloud
+  hosts: nitecloud
   tasks:
-    - ansible.builtin.include_tasks:
+    - name: Dotfiles
+      ansible.builtin.include_tasks:
         file: tasks/dotfiles.yml
-    - ansible.builtin.include_tasks:
+    - name: Borg
+      ansible.builtin.include_tasks:
         file: tasks/borgbackup.yml
-    - ansible.builtin.include_tasks:
+    - name: Borgmatic
+      ansible.builtin.include_tasks:
         file: tasks/borgmatic.yml
-    - name: docker
-      tags: docker
+    - name: Docker
       ansible.builtin.include_tasks:
         file: tasks/docker.yml
-        apply:
-          tags: docker
-    - ansible.builtin.include_tasks:
+    - name: Git
+      ansible.builtin.include_tasks:
         file: tasks/git.yml
-    - ansible.builtin.include_tasks:
+    - name: Tmux
+      ansible.builtin.include_tasks:
         file: tasks/tmux.yml
-    - ansible.builtin.include_tasks:
+    - name: Vim
+      ansible.builtin.include_tasks:
         file: tasks/vim.yml
-    - ansible.builtin.include_tasks:
+    - name: Zsh
+      ansible.builtin.include_tasks:
         file: tasks/zsh.yml
     # - name: Create kbilan
     #   ansible.builtin.user:
     #     name: kbilan
     #     TODO password
-    - ansible.builtin.include_tasks:
+    - name: SSH configuration
+      ansible.builtin.include_tasks:
         file: tasks/sshd.yml
-    - name: Disable root login
-      become: true
-      lineinfile:
-        dest: "/etc/ssh/sshd_config"
-        regexp: "^PermitRootLogin\ "
-        line: "PermitRootLogin no"
-    - ansible.builtin.include_tasks:
+    - name: Upgrade packages
+      ansible.builtin.include_tasks:
         file: tasks/upgrade.yml

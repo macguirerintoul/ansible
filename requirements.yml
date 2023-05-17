@@ -1,3 +1,5 @@
 ---
 roles:
   - name: elliotweiser.osx-command-line-tools
+  - name: geerlingguy.docker
+  - name: townk.beautiful_output

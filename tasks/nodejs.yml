@@ -1,0 +1,8 @@
+- name: Add Node.js asdf plugin
+  ansible.builtin.command: asdf plugin add nodejs
+  register: nodejs_plugin
+  failed_when: nodejs_plugin.rc not in [ 0, 2 ]”
+- name: Install Node.js
+  ansible.builtin.command: asdf install nodejs lts
+  register: nodejs_install
+  failed_when: nodejs_install.rc not in [ 0, 2 ]”

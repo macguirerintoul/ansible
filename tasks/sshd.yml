@@ -1,14 +1,14 @@
 ---
-- name: sshd
+- name: Configure sshd
   become: true
   block:
     - name: Change SSH port
-      lineinfile:
+      ansible.builtin.lineinfile:
         dest: "/etc/ssh/sshd_config"
         regexp: "^Port"
         line: "Port 9753"
     - name: Reload ssh
       become: true
-      service:
+      ansible.builtin.service:
         name: ssh
         state: restarted

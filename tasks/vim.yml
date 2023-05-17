@@ -1,10 +1,10 @@
 ---
-- ansible.builtin.apt:
-    name:
-      - vim
-    state: latest
+- name: Install Vim
+  ansible.builtin.apt:
+    name: vim
   become: true
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
-- community.general.homebrew:
+- name: Install Vim
+  community.general.homebrew:
     name: vim
   when: ansible_distribution == 'MacOSX'

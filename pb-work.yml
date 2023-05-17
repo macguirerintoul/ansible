@@ -1,26 +1,25 @@
 ---
-- hosts: localhost # Run on the macOS device to be setup
+- name: Provision my work macOS device
+  hosts: localhost # Run on the macOS device to be setup
+  roles:
+    - role: townk.beautiful_output
   module_defaults:
     community.general.homebrew_cask:
       accept_external_apps: true
   tasks:
-    - ansible.builtin.include_tasks:
+    - name: Dotfiles
+      ansible.builtin.include_tasks:
         file: tasks/dotfiles.yml
     # Packages
-    - ansible.builtin.include_tasks:
+    - name: Zsh
+      ansible.builtin.include_tasks:
         file: tasks/zsh.yml
     - ansible.builtin.include_tasks:
         file: tasks/git.yml
-    - ansible.builtin.include_tasks:
-        file: tasks/ansible.yml
-    - ansible.builtin.include_tasks:
-        file: tasks/borgbackup.yml
-    - ansible.builtin.include_tasks:
-        file: tasks/docker.yml
     - ansible.builtin.include_role:
         name: elliotweiser.osx-command-line-tools
-    - ansible.builtin.include_tasks:
-        file: tasks/nvm.yml
+    - ansible.builtin.import_tasks:
+        file: tasks/nodejs.yml
     - ansible.builtin.include_tasks:
         file: tasks/tmux.yml
     - ansible.builtin.include_tasks:
@@ -33,8 +32,6 @@
     - ansible.builtin.include_tasks:
         file: tasks/figma.yml
     - ansible.builtin.include_tasks:
-        file: tasks/firefox.yml
-    - ansible.builtin.include_tasks:
         file: tasks/flux.yml
     - ansible.builtin.include_tasks:
         file: tasks/magnet.yml
@@ -44,8 +41,6 @@
         file: tasks/wireguard.yml
     - ansible.builtin.include_tasks:
         file: tasks/iterm2.yml
-    - ansible.builtin.include_tasks:
-        file: tasks/libreoffice.yml
     - ansible.builtin.include_tasks:
         file: tasks/macs-fan-control.yml
     - ansible.builtin.include_tasks:
