@@ -1,3 +1,8 @@
+- name: Check if Chrome is already installed
+  ansible.builtin.stat:
+    path: "/Applications/Google Chrome.app"
+  register: chrome_exists
 - name: Install Chrome
   community.general.homebrew_cask:
     name: google-chrome
+  when: not chrome_exists.stat.exists

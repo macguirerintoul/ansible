@@ -1,3 +1,8 @@
+- name: Check if Figma is already installed
+  ansible.builtin.stat:
+    path: "/Applications/Figma.app"
+  register: figma_exists
 - name: Install Figma
   community.general.homebrew_cask:
     name: figma
+  when: not figma_exists.stat.exists

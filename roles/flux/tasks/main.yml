@@ -1,3 +1,8 @@
+- name: Check if Flux is already installed
+  ansible.builtin.stat:
+    path: "/Applications/Flux.app"
+  register: flux_exists
 - name: Install Flux
   community.general.homebrew_cask:
     name: flux
+  when: not flux_exists.stat.exists

@@ -2,9 +2,6 @@
   ansible.builtin.command: asdf plugin add nodejs
   register: nodejs_plugin
   changed_when: nodejs_plugin.rc == 0
-  failed_when: nodejs_plugin.rc not in [ 0, 2 ]
+  failed_when: nodejs_plugin.rc not in [ 0, 2 ] # asdf returns 2 when plugin is already added
 - name: Install Node.js
   ansible.builtin.command: asdf install nodejs lts
-  register: nodejs_install
-  failed_when: nodejs_install.rc not in [ 0, 2 ]
-  changed_when: nodejs_install.rc == 0

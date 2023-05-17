@@ -1,8 +1,0 @@
-- name: Install Docker
-  community.general.homebrew:
-    name: docker
-  when: ansible_distribution == 'MacOSX'
-- name: Install Docker
-  when: ansible_facts['os_family'] == "Debian"
-  roles:
-    - geerlingguy.docker

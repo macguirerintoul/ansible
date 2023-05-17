@@ -1,2 +1,7 @@
+- name: Check if Firefox is already installed
+  ansible.builtin.stat:
+    path: "/Applications/Firefox.app"
+  register: firefox_exists
 - community.general.homebrew_cask:
     name: firefox
+  when: not firefox_exists.stat.exists
