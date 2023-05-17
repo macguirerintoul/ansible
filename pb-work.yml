@@ -1,73 +1,28 @@
 ---
 - name: Provision my work macOS device
   hosts: localhost # Run on the macOS device to be setup
-  roles:
-    - role: townk.beautiful_output
   module_defaults:
     community.general.homebrew_cask:
       accept_external_apps: true
-  tasks:
-    - name: Dotfiles
-      ansible.builtin.import_tasks:
-        file: tasks/dotfiles.yml
-    # Packages
-    - name: Zsh
-      ansible.builtin.import_tasks:
-        file: tasks/zsh.yml
-    - name: Git
-      ansible.builtin.import_tasks:
-        file: tasks/git.yml
-    - name: Command Line Tools
-      ansible.builtin.import_role:
-        name: elliotweiser.osx-command-line-tools
-    - name: Node.js
-      ansible.builtin.import_tasks:
-        file: tasks/nodejs.yml
-    - name: Tmux
-      ansible.builtin.import_tasks:
-        file: tasks/tmux.yml
-    - name: Vim
-      ansible.builtin.import_tasks:
-        file: tasks/vim.yml
-    # Apps
-    - name: App Store CLI
-      ansible.builtin.import_tasks:
-        file: tasks/mas.yml
-    - name: Chrome
-      ansible.builtin.import_tasks:
-        file: tasks/chrome.yml
-    - name: Figma
-      ansible.builtin.import_tasks:
-        file: tasks/figma.yml
-    - name: Flux
-      ansible.builtin.import_tasks:
-        file: tasks/flux.yml
-    - name: Magnet
-      ansible.builtin.import_tasks:
-        file: tasks/magnet.yml
-    - name: WireGuard
-      ansible.builtin.import_tasks:
-        file: tasks/wireguard.yml
-    - name: Install iTerm2
-      ansible.builtin.import_tasks:
-        file: tasks/iterm2.yml
-    - name: Macs Fan Control
-      ansible.builtin.import_tasks:
-        file: tasks/macs-fan-control.yml
-    - name: MonitorControl
-      ansible.builtin.import_tasks:
-        file: tasks/monitorcontrol.yml
-    - name: Raycast
-      ansible.builtin.import_tasks:
-        file: tasks/raycast.yml
-    - name: Spotify
-      ansible.builtin.import_tasks:
-        file: tasks/spotify.yml
-    - name: VSCode
-      ansible.builtin.import_tasks:
-        file: tasks/visual-studio-code.yml
-    # TODO defaults
-    # Wrap up
-    - name: Upgrade
-      ansible.builtin.import_tasks:
-        file: tasks/upgrade.yml
+  roles:
+    - townk.beautiful_output
+    - dotfiles
+    - zsh
+    - git
+    - elliotweiser.osx-command-line-tools
+    - nodejs
+    - tmux
+    - vim
+    - mas
+    - chrome
+    - figma
+    - flux
+    - magnet
+    - wireguard
+    - iterm2
+    - macs-fan-control
+    - monitorcontrol
+    - raycast
+    - spotify
+    - visual-studio-code
+    - upgrade
