@@ -8,50 +8,66 @@
       accept_external_apps: true
   tasks:
     - name: Dotfiles
-      ansible.builtin.include_tasks:
+      ansible.builtin.import_tasks:
         file: tasks/dotfiles.yml
     # Packages
     - name: Zsh
-      ansible.builtin.include_tasks:
+      ansible.builtin.import_tasks:
         file: tasks/zsh.yml
-    - ansible.builtin.include_tasks:
+    - name: Git
+      ansible.builtin.import_tasks:
         file: tasks/git.yml
-    - ansible.builtin.include_role:
+    - name: Command Line Tools
+      ansible.builtin.import_role:
         name: elliotweiser.osx-command-line-tools
-    - ansible.builtin.import_tasks:
+    - name: Node.js
+      ansible.builtin.import_tasks:
         file: tasks/nodejs.yml
-    - ansible.builtin.include_tasks:
+    - name: Tmux
+      ansible.builtin.import_tasks:
         file: tasks/tmux.yml
-    - ansible.builtin.include_tasks:
+    - name: Vim
+      ansible.builtin.import_tasks:
         file: tasks/vim.yml
     # Apps
-    - ansible.builtin.include_tasks:
+    - name: App Store CLI
+      ansible.builtin.import_tasks:
         file: tasks/mas.yml
-    - ansible.builtin.include_tasks:
+    - name: Chrome
+      ansible.builtin.import_tasks:
         file: tasks/chrome.yml
-    - ansible.builtin.include_tasks:
+    - name: Figma
+      ansible.builtin.import_tasks:
         file: tasks/figma.yml
-    - ansible.builtin.include_tasks:
+    - name: Flux
+      ansible.builtin.import_tasks:
         file: tasks/flux.yml
-    - ansible.builtin.include_tasks:
+    - name: Magnet
+      ansible.builtin.import_tasks:
         file: tasks/magnet.yml
-    - ansible.builtin.include_tasks:
-        file: tasks/protonvpn.yml
-    - ansible.builtin.include_tasks:
+    - name: WireGuard
+      ansible.builtin.import_tasks:
         file: tasks/wireguard.yml
-    - ansible.builtin.include_tasks:
+    - name: Install iTerm2
+      ansible.builtin.import_tasks:
         file: tasks/iterm2.yml
-    - ansible.builtin.include_tasks:
+    - name: Macs Fan Control
+      ansible.builtin.import_tasks:
         file: tasks/macs-fan-control.yml
-    - ansible.builtin.include_tasks:
+    - name: MonitorControl
+      ansible.builtin.import_tasks:
         file: tasks/monitorcontrol.yml
-    - ansible.builtin.include_tasks:
+    - name: Raycast
+      ansible.builtin.import_tasks:
         file: tasks/raycast.yml
-    - ansible.builtin.include_tasks:
+    - name: Spotify
+      ansible.builtin.import_tasks:
         file: tasks/spotify.yml
-    - ansible.builtin.include_tasks:
+    - name: VSCode
+      ansible.builtin.import_tasks:
         file: tasks/visual-studio-code.yml
     # TODO defaults
     # Wrap up
-    - ansible.builtin.include_tasks:
+    - name: Upgrade
+      ansible.builtin.import_tasks:
         file: tasks/upgrade.yml

@@ -2,13 +2,13 @@
   community.general.homebrew_cask:
     name: iterm2
 - name: Specify iTerm custom preferences location
-  osx_defaults:
+  community.general.osx_defaults:
     domain: com.googlecode.iterm2
     key: PrefsCustomFolder
     type: string
     value: ~/.dotfiles/other/iterm2
 - name: Load preferences from custom folder
-  osx_defaults:
+  community.general.osx_defaults:
     domain: com.googlecode.iterm2
     key: LoadPrefsFromCustomFolder
     type: boolean

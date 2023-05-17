@@ -1,2 +1,3 @@
-- community.general.homebrew_cask:
+- name: Install Raycast
+  community.general.homebrew_cask:
     name: raycast

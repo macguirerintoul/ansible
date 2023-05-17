@@ -1,2 +1,3 @@
-- community.general.homebrew_cask:
+- name: Install Macs Fan Control
+  community.general.homebrew_cask:
     name: macs-fan-control

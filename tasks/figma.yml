@@ -1,2 +1,3 @@
-- community.general.homebrew_cask:
+- name: Install Figma
+  community.general.homebrew_cask:
     name: figma

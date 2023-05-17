@@ -1,6 +1,6 @@
-- name: Magnet
+- name: Install Magnet
   tags:
-  - no-ci
+    - no-ci
   community.general.mas:
     id: 441258766
     state: latest
