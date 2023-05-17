@@ -10,3 +10,9 @@
     update_homebrew: true
     upgrade_all: true
   when: ansible_distribution == 'MacOSX'
+
+- name: Upgrade App Store apps
+  tags: no-ci
+  community.general.mas:
+    upgrade_all: true
+  when: ansible_distribution == 'MacOSX'

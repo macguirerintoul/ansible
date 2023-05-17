@@ -1,0 +1,41 @@
+- name: Install dockutil
+  community.general.homebrew_cask:
+    name: hpedrorodrigues/tools/dockutil # See https://github.com/kcrawford/dockutil/issues/127
+
+- name: Clear dock
+  ansible.builtin.command: dockutil --remove all
+  changed_when: false
+
+- name: Populate dock
+  when: work # Only run this for work device, specified in the playbook
+  ansible.builtin.command: dockutil --add {{ item }}
+  loop:
+    - /Applications/Launchpad.app
+    - /Applications/Google Chrome.app
+    - /Applications/Spotify.app
+    - /Applications/Figma.app
+    - /Applications/Obsidian.app
+    - ~/Downloads
+  changed_when: false
+
+- name: Populate dock
+  when: not work # Only run this for personal device, specified in the playbook
+  ansible.builtin.command: dockutil --add {{ item }}
+  loop:
+    - /Applications/Launchpad.app
+    - /Applications/Google Chrome.app
+    - /Applications/iTerm2.app
+    - ~/Downloads
+  changed_when: false
+
+- name: Create screenshots directory
+  file:
+    path: "~/Pictures/Screenshots"
+    state: directory
+
+- name: Set custom screenshots directory
+  community.general.osx_defaults:
+    domain: com.apple.screencapture
+    key: location
+    type: string
+    value: ~/Pictures/Screenshots

@@ -1,7 +1,3 @@
 - name: Install mas cli
   community.general.homebrew:
     name: mas
-- name: Open App Store for login
-  ansible.builtin.command: open -a "App Store"
-  register: mas_status
-  changed_when: mas_status.rc != 0

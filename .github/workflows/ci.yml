@@ -19,7 +19,8 @@ jobs:
       - name: Install requirements
         run: ansible-galaxy install -r requirements.yml
       - name: Test the playbook
-        run: ansible-playbook pb-work.yml -v -i inventory-ci.ini
+        # Skip some tasks that depend on manual steps
+        run: ansible-playbook pb-work.yml --skip-tags no-ci -v -i inventory-ci.ini
   nitecloud:
     name: nitecloud
     runs-on: ubuntu-22.04

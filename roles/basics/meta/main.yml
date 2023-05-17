@@ -1,0 +1,7 @@
+dependencies:
+  - role: git
+  - role: dotfiles
+  - role: zsh
+  - role: tmux
+  - role: vim
+  - role: tree

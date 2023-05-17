@@ -5,14 +5,10 @@
       accept_external_apps: true
   roles:
     # setup
-    - dotfiles
-    - zsh
-    - git
+    - basics
     - elliotweiser.osx-command-line-tools
     # packages
     - nodejs
-    - tmux
-    - vim
     - upgrade
     # apps
     - mas
@@ -27,3 +23,7 @@
     - raycast
     - spotify
     - visual-studio-code
+    # wrap up
+    - role: macos
+      vars:
+        work: true
