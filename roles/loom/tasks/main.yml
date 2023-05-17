@@ -1,0 +1,3 @@
+- name: Install Loom
+  community.general.homebrew_cask:
+    name: loom

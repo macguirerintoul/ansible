@@ -11,3 +11,6 @@ ansible-playbook $FILE -K
 
 - https://github.com/geerlingguy/mac-dev-playbook
 - https://github.com/adamchainz/mac-ansible
+- https://github.com/TalkingQuickly/ansible-osx-setup
+- https://github.com/bennylope/macbook-configuration
+- https://github.com/ideasonpurpose/ansible-playbooks

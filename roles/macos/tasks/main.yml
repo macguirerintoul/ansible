@@ -29,9 +29,10 @@
   changed_when: false
 
 - name: Create screenshots directory
-  file:
+  ansible.builtin.file:
     path: "~/Pictures/Screenshots"
     state: directory
+    mode: "0755"
 
 - name: Set custom screenshots directory
   community.general.osx_defaults:
