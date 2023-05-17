@@ -12,14 +12,14 @@
     paths: ~/.dotfiles/home
     hidden: true
     recurse: true
-  register: find
+  register: dotfiles_find
 - name: Create links to ~/.dotfiles/home from ~
   ansible.builtin.file:
     src: "{{ item.path }}"
     path: "~/{{ item.path | regex_search('(?<=.dotfiles\/home\/).*') }}"
     state: link
     force: true # force link if file already exists
-  with_items: "{{ find.files | select('match', '^((?!.zsh_plugins|.vim).)*$') }}"
+  with_items: "{{ dotfiles_find.files | select('match', '^((?!.zsh_plugins|.vim).)*$') }}"
 - name: Create link to Zsh plugins directory
   ansible.builtin.file:
     src: ~/.dotfiles/home/.zsh_plugins

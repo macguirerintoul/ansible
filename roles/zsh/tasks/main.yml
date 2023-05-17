@@ -10,14 +10,14 @@
   when: ansible_distribution == 'MacOSX'
 - name: Get the current user
   ansible.builtin.command: whoami
-  register: whoami
+  register: zsh_whoami
   changed_when: false
 - name: Get the path to zsh
   ansible.builtin.command: which zsh
-  register: zsh
+  register: zsh_zsh
   changed_when: false
 - name: Make zsh default shell
   become: true
   ansible.builtin.user:
-    name: "{{ whoami.stdout }}"
-    shell: "{{ zsh.stdout }}"
+    name: "{{ zsh_whoami.stdout }}"
+    shell: "{{ zsh_zsh.stdout }}"
