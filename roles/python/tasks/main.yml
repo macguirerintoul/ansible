@@ -1,0 +1,9 @@
+- name: Add Python asdf plugin
+  ansible.builtin.command: asdf plugin add python
+  register: python_plugin
+  changed_when: python_plugin.rc == 0
+  failed_when: python_plugin.rc not in [ 0, 2 ] # asdf returns 2 when plugin is already added
+- name: Install Python
+  ansible.builtin.command: asdf install python latest
+  register: python_installed
+  changed_when: "'already added' in python_installed.results"

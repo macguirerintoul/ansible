@@ -1,18 +1,20 @@
----
-- name: Provision my work macOS device
+- name: Provision work macOS device
   hosts: localhost # Run on the macOS device to be setup
   module_defaults:
     community.general.homebrew_cask:
       accept_external_apps: true
   roles:
-    - townk.beautiful_output
+    # setup
     - dotfiles
     - zsh
     - git
     - elliotweiser.osx-command-line-tools
+    # packages
     - nodejs
     - tmux
     - vim
+    - upgrade
+    # apps
     - mas
     - chrome
     - figma
@@ -25,4 +27,3 @@
     - raycast
     - spotify
     - visual-studio-code
-    - upgrade

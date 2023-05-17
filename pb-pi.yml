@@ -1,29 +1,12 @@
 ---
 - name: Raspberry Pi
   hosts: pi
-  tasks:
-    - ansible.builtin.include_tasks: 
-        file: tasks/sshd.yml
-    - name: "Package: zsh"
-      ansible.builtin.include_tasks:
-        file: tasks/zsh.yml
-    - name: "Set up dotfiles"
-      ansible.builtin.include_tasks:
-        file: tasks/dotfiles.yml
-    - name: "Package: git"
-      ansible.builtin.include_tasks:
-        file: tasks/git.yml
-    - name: "Package: tmux"
-      ansible.builtin.include_tasks:
-        file: tasks/tmux.yml
-    - name: "Package: vim"
-      ansible.builtin.include_tasks:
-        file: tasks/vim.yml
-    - name: docker
-      tags: docker
-      ansible.builtin.include_tasks: 
-        file: tasks/docker.yml
-        apply:
-          tags: docker 
-    - ansible.builtin.include_tasks:
-        file: tasks/upgrade.yml
+  roles:
+    - sshd
+    - zsh
+    - dotfiles
+    - git
+    - tmux
+    - vim
+    - geerlingguy.docker
+    - upgrade

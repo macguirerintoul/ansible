@@ -1,62 +1,33 @@
 - name: Provision personal macOS device
-  hosts: localhost # Run on the macOS device to be setup
+  hosts: localhost # Run on the macOS device to be set up
   module_defaults:
     community.general.homebrew_cask:
       accept_external_apps: true
-  tasks:
-    - ansible.builtin.include_tasks:
-        file: tasks/dotfiles.yml
-    # Packages
-    - ansible.builtin.include_tasks:
-        file: tasks/zsh.yml
-    - ansible.builtin.include_tasks:
-        file: tasks/git.yml
-    - ansible.builtin.include_tasks:
-        file: tasks/asdf.yml
-    - ansible.builtin.include_tasks:
-        file: tasks/borgbackup.yml
-    - ansible.builtin.include_tasks:
-        file: tasks/docker.yml
-    - ansible.builtin.include_role:
-        name: elliotweiser.osx-command-line-tools
-    - ansible.builtin.include_tasks:
-        file: tasks/nvm.yml
-    - ansible.builtin.include_tasks:
-        file: tasks/tmux.yml
-    - ansible.builtin.include_tasks:
-        file: tasks/vim.yml
-    # Apps
-    - ansible.builtin.include_tasks:
-        file: tasks/mas.yml
-    - ansible.builtin.include_tasks:
-        file: tasks/chrome.yml
-    - ansible.builtin.include_tasks:
-        file: tasks/figma.yml
-    - ansible.builtin.include_tasks:
-        file: tasks/firefox.yml
-    - ansible.builtin.include_tasks:
-        file: tasks/flux.yml
-    - ansible.builtin.include_tasks:
-        file: tasks/magnet.yml
-    - ansible.builtin.include_tasks:
-        file: tasks/protonvpn.yml
-    - ansible.builtin.include_tasks:
-        file: tasks/wireguard.yml
-    - ansible.builtin.include_tasks:
-        file: tasks/iterm2.yml
-    - ansible.builtin.include_tasks:
-        file: tasks/libreoffice.yml
-    - ansible.builtin.include_tasks:
-        file: tasks/macs-fan-control.yml
-    - ansible.builtin.include_tasks:
-        file: tasks/monitorcontrol.yml
-    - ansible.builtin.include_tasks:
-        file: tasks/raycast.yml
-    - ansible.builtin.include_tasks:
-        file: tasks/spotify.yml
-    - ansible.builtin.include_tasks:
-        file: tasks/visual-studio-code.yml
-    # TODO defaults
-    # Wrap up
-    - ansible.builtin.include_tasks:
-        file: tasks/upgrade.yml
+  roles:
+    # setup
+    - git
+    - dotfiles
+    - zsh
+    - elliotweiser.osx-command-line-tools
+    - asdf
+    # packages
+    - nodejs
+    - python
+    - tmux
+    - tree
+    - vim
+    - upgrade
+    # apps
+    - mas
+    - chrome
+    - figma
+    - flux
+    - magnet
+    - iterm2
+    - macs-fan-control
+    - monitorcontrol
+    - protonvpn
+    - raycast
+    - spotify
+    - visual-studio-code
+    - wireguard

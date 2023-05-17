@@ -1,37 +1,12 @@
 - name: Nitecloud
   hosts: nitecloud
-  tasks:
-    - name: Dotfiles
-      ansible.builtin.include_tasks:
-        file: tasks/dotfiles.yml
-    - name: Borg
-      ansible.builtin.include_tasks:
-        file: tasks/borgbackup.yml
-    - name: Borgmatic
-      ansible.builtin.include_tasks:
-        file: tasks/borgmatic.yml
-    - name: Docker
-      ansible.builtin.include_tasks:
-        file: tasks/docker.yml
-    - name: Git
-      ansible.builtin.include_tasks:
-        file: tasks/git.yml
-    - name: Tmux
-      ansible.builtin.include_tasks:
-        file: tasks/tmux.yml
-    - name: Vim
-      ansible.builtin.include_tasks:
-        file: tasks/vim.yml
-    - name: Zsh
-      ansible.builtin.include_tasks:
-        file: tasks/zsh.yml
-    # - name: Create kbilan
-    #   ansible.builtin.user:
-    #     name: kbilan
-    #     TODO password
-    - name: SSH configuration
-      ansible.builtin.include_tasks:
-        file: tasks/sshd.yml
-    - name: Upgrade packages
-      ansible.builtin.include_tasks:
-        file: tasks/upgrade.yml
+  roles:
+    - dotfiles
+    - zsh
+    - asdf
+    - git
+    - nodejs
+    - tmux
+    - vim
+    - sshd
+    - upgrade
