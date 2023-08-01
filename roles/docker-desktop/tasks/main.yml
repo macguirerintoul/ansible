@@ -1,0 +1,8 @@
+- name: Check if Docker Desktop is already installed
+  ansible.builtin.stat:
+    path: "/Applications/Docker.app"
+  register: docker_exists
+- name: Install Docker Desktop
+  community.general.homebrew_cask:
+    name: docker
+  when: not docker_exists.stat.exists

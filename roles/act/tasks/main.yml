@@ -1,0 +1,4 @@
+- name: Install act
+  community.general.homebrew:
+    name: act
+  when: ansible_distribution == 'MacOSX'
