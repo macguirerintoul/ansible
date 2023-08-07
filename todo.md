@@ -1,2 +1,5 @@
 - check if apps already exist
 - comments
+- crontab
+- create ssh keys
+- copy ssh keys
