@@ -1,6 +1,6 @@
 - name: Ensure .dotfiles repo is present # noqa: latest # Ansible Lint wants a version specified
   ansible.builtin.git:
-    repo: https://github.com/macguirerintoul/.dotfiles.git
+    repo: git@github.com:macguirerintoul/.dotfiles.git
     dest: ~/.dotfiles
 - name: Ensure the ~/.ssh directory exists, so ~/.ssh/config can be copied
   ansible.builtin.file:
@@ -10,8 +10,9 @@
 - name: Find all files in ~/.dotfiles/home
   ansible.builtin.find:
     paths: ~/.dotfiles/home
+    file_type: "file"
     hidden: true
-    recurse: true
+    recurse: false
   register: dotfiles_find
 - name: Create links to ~/.dotfiles/home from ~
   ansible.builtin.file:
@@ -19,7 +20,7 @@
     path: "~/{{ item.path | regex_search('(?<=.dotfiles\/home\/).*') }}"
     state: link
     force: true # force link if file already exists
-  with_items: "{{ dotfiles_find.files | select('match', '^((?!.zsh_plugins|.vim).)*$') }}"
+  with_items: "{{ dotfiles_find.files }}"
 - name: Create link to Zsh plugins directory
   ansible.builtin.file:
     src: ~/.dotfiles/home/.zsh_plugins

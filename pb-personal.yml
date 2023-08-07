@@ -7,7 +7,7 @@
     # setup
     - git
     - dotfiles
-    - zsh
+    # - zsh
     - elliotweiser.osx-command-line-tools
     - asdf
     # packages
@@ -16,9 +16,9 @@
     - tmux
     - tree
     - vim
+    - mas
     - upgrade
     # apps
-    - mas
     - chrome
     - figma
     - flux

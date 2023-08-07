@@ -4,6 +4,6 @@
   changed_when: nodejs_plugin.rc == 0
   failed_when: nodejs_plugin.rc not in [ 0, 2 ] # asdf returns 2 when plugin is already added
 - name: Install Node.js
-  ansible.builtin.command: asdf install nodejs lts
-  register: nodejs_installed
-  changed_when: "'already added' in nodejs_installed.results"
+  ansible.builtin.command: asdf install nodejs latest:18
+  register: nodejs_installed 
+  changed_when: "'already added' in nodejs_installed.stdout" 

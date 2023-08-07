@@ -6,4 +6,4 @@
 - name: Install Python
   ansible.builtin.command: asdf install python latest
   register: python_installed
-  changed_when: "'already added' in python_installed.results"
+  changed_when: "'already added' in python_installed.stdout"
